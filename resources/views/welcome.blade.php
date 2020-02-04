@@ -1,1 +1,3 @@
-<h1><?=isset($greeting) ? "{$greeting}" : 'hello ';?><?=$name?></h1>
+<!-- HTML 주석안에서 {{ $name }} 을(를) 출력합니다. -->
+{{-- 블레이드 주석안에서 {{ $name }} 을(를) 출력합니다. --}}
+<h1>{{ $greeting }} {{ $name }}</h1>
