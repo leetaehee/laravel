@@ -11,13 +11,20 @@
 |
 */
 
-Route::get('/', [
-	'as' => 'home',
-	function() {
-		return '제 이름은 "Home" 입니다.';
-	}
-]);
+Route::get('/', function() {
+	/*
+	return view('welcome')->with('name', 'Foo');
+	*/
+	
+	/*
+	return view('welcome')->with([
+		'name'=> 'Foo',
+		'greeting'=> '안녕하세요?',
+	]);
+	*/
 
-Route::get('/home', function () {
-	return redirect(route('home'));
+	return view('welcome', [
+		'name'=> 'Foo',
+		'greeting'=> '안녕하세요?',
+	]);
 });
