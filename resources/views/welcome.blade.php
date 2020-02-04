@@ -1,3 +1,8 @@
-<!-- HTML 주석안에서 {{ $name }} 을(를) 출력합니다. -->
-{{-- 블레이드 주석안에서 {{ $name }} 을(를) 출력합니다. --}}
-<h1>{{ $greeting }} {{ $name }}</h1>
+<?php //$items = []; ?>
+<ul>
+	@forelse($items as $item)
+		<li>{{ $item }}</li>
+	@empty
+		<li>엥~ 아무것도 없는데요~</li>
+	@endforelse
+</ul>
