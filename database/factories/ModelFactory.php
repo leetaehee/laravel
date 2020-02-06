@@ -8,11 +8,12 @@ use Illuminate\Support\Str;
 
 $factory->define(App\Article::class, function (Faker $faker) {
     $date = $faker->dateTimeThisMonth;
+	$userId = App\User::pluck('id')->toArray();
 
 	return [
         'title'=> $faker->sentence(),
 		'content'=> $faker->paragraph(),
-		'user_id'=> 1,
+		'user_id'=>  $faker->randomElement($userId),
 		'created_at'=> $date,
 		'updated_at'=> $date
     ];
