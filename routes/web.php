@@ -38,3 +38,7 @@ Route::get('auth/logout', function(){
 
 	return '또 봐요~';
 });
+
+DB::listen(function ($query){
+	//var_dump($query->sql);
+});
