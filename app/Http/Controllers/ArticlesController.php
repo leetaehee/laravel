@@ -31,32 +31,11 @@ class ArticlesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(\App\Http\Requests\ArticlesRequest $request)
     {
-        $rules = [
-            'title'=> ['required'],
-            'content'=> ['required', 'min:10'],
-        ];
-
-        $messages = [
-            'title.required' => '제목은 필수 입력 항목입니다.',
-            'content.required' => '본문은 필수 입력 항목입니다.',
-            'content.min' => '본문은 최소 :min 글자 이상이 필요합니다.',
-        ];
-
-        /*
-            $validator = \Validator::make($request->all(), $rules, $messages);
-
-            if ($validator->fails()) {
-                return back()->withErrors($validator)->withInput();
-            }
-        */
-
-        //  트레이트
-        $this->validate($request, $rules, $messages);
-
         $article = \App\User::find(1)->articles()->create($request->all());
 
         if (! $article) {
