@@ -14,14 +14,16 @@ class ArticleCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $article;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Article $article)
     {
-        //
+        $this->article = $article;
     }
 
     /**

@@ -44,7 +44,7 @@ class ArticlesController extends Controller
         }
 
         var_dump('이벤트를 던집니다.');
-        event('article.created', [$article]);
+        event(new \App\Events\ArticleCreated($article));
         var_dump('이벤트를 던졌습니다.');
     }
 

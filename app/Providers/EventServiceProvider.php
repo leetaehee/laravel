@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\ArticleCreated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -30,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         Event::listen(
-            'article.created',
+            \App\Events\ArticleCreated::class,
             \App\Listeners\ArticlesEventListener::class
         );
     }
