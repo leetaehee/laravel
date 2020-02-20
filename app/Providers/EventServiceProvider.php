@@ -29,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(
+            'article.created',
+            \App\Listeners\ArticlesEventListener::class
+        );
     }
 }
