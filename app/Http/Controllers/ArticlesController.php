@@ -14,7 +14,8 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = \App\Article::with('user')->latest()->paginate(3);
-		return view('articles.index', compact('articles'));
+		dd(view('articles.index', compact('articles'))->render());
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -56,7 +57,9 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        return __METHOD__ . '은(는) 다음 기본 키를 가진 Article 모델을 조회합니다.:' . $id;
+        $article = \App\Article::findOrFail($id);
+        dd($article);
+        return $article->toArray();
     }
 
     /**
