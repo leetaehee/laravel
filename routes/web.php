@@ -43,8 +43,8 @@ Route::get('mail', function(){
    $article = \App\Article::with('user')->find(1);
 
 	return Mail::send(
-	    ['text'=> 'emails.articles.created-text'],
-        //'emails.articles.created',
+	    //['text'=> 'emails.articles.created-text'],
+        'emails.articles.created',
         compact('article'),
         function ($message) use ($article) {
            $message->from('lastride25@kevinlab.com', '케빈랩_이태희주임');
