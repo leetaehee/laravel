@@ -5,7 +5,7 @@
 		/*body { background: green; color: white; } */
 	</style>
 
-    <style rel="stylesheet" href="{{ mix('css/app.css') }}"></style>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @endsection
 
 @section('content')

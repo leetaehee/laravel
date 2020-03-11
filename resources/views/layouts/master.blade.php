@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<title>라라벨 입문</title>
 
 	@yield('style')
-	
+
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 			{{ session('flash_message') }}
 		</div>
 	@endif
-	
+
 	@yield('content')
 
 	@yield('script')
