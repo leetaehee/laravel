@@ -14,7 +14,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = \App\Article::with('user')->latest()->paginate(3);
-		dd(view('articles.index', compact('articles'))->render());
+		//dd(view('articles.index', compact('articles'))->render());
         return view('articles.index', compact('articles'));
     }
 

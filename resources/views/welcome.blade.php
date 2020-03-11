@@ -2,8 +2,10 @@
 
 @section('style')
 	<style>
-		body { background: green; color: white; }
+		/*body { background: green; color: white; } */
 	</style>
+
+    <style rel="stylesheet" href="{{ mix('css/app.css') }}"></style>
 @endsection
 
 @section('content')
