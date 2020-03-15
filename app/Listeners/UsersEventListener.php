@@ -49,8 +49,6 @@ class UsersEventListener
                     sprintf('[%s] 회원 가입을 확인해 주세요.', config('app.name'))
                 );
             });
-
-            echo "11";
     }
 
 
