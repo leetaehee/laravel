@@ -20,7 +20,7 @@ Route::post('auth/register', [
 Route::get('auth/confirm/{code}', [
     'as' => 'users.confirm',
     'uses' => 'UsersController@confirm'
-]);
+])->where('code', '[a-zA-z0-9]{60}');
 
 /* 사용자 인증 */
 Route::get('auth/login', [
