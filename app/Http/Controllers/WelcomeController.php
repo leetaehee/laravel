@@ -8,6 +8,8 @@ class WelcomeController extends Controller
 {
     public function index()
 	{
-		return view('welcome');
+	    flash('환영합니다.');
+
+		return view('layouts.app');
 	}
 }
