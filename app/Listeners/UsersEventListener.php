@@ -63,7 +63,7 @@ class UsersEventListener
             function ($message) use ($event) {
                 $message->to($event->email);
                 $message->subject(
-                    sprintf('[%s] 비밀번호를 초기화하세요.', config('app.name'))
+                    sprintf('[%s] 비밀번호를 초기화하세요1.', config('app.name'))
                 );
             }
         );
