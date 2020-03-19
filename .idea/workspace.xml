@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="516aecd1-6b49-4d3e-84ea-d6516bde8e4c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e301e9eb-9ee2-4d5b-b76d-63e13a218676.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e301e9eb-9ee2-4d5b-b76d-63e13a218676.xml" afterDir="false" />
+    <list default="true" id="516aecd1-6b49-4d3e-84ea-d6516bde8e4c" name="Default Changelist" comment="이벤트 subscribe 오타 수정">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Events/PasswordRemindCreated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/PasswordRemindCreated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PasswordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PasswordsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Listeners/UsersEventListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/UsersEventListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/passwords/remind.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/passwords/remind.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -229,7 +223,7 @@
       <workItem from="1584245602952" duration="4038000" />
       <workItem from="1584256101839" duration="6623000" />
       <workItem from="1584265599491" duration="6829000" />
-      <workItem from="1584579700887" duration="1561000" />
+      <workItem from="1584579700887" duration="1917000" />
     </task>
     <task id="LOCAL-00001" summary="입력값 유효성 검사1">
       <created>1582117661751</created>
@@ -364,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584260109012</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="이벤트 subscribe 오타 수정">
+      <created>1584582450704</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1584582450704</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -434,7 +435,8 @@
     <MESSAGE value="개발 계획과 준비" />
     <MESSAGE value="사용자 인증 재구성 초기작업" />
     <MESSAGE value="사용자 인증 라우터 구성" />
-    <option name="LAST_COMMIT_MESSAGE" value="사용자 인증 라우터 구성" />
+    <MESSAGE value="이벤트 subscribe 오타 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="이벤트 subscribe 오타 수정" />
   </component>
   <component name="masterDetails">
     <states>
