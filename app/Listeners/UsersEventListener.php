@@ -21,9 +21,13 @@ class UsersEventListener
     public function subscribe(\Illuminate\Events\Dispatcher $events)
     {
         $events->listen(
-            \App\Events\UserCreated::class, __CLASS__ . '@onUserCreated',
+            \App\Events\UserCreated::class, __CLASS__ . '@onUserCreated'
+        );
+
+        $events->listen(
             \App\Events\PasswordRemindCreated::class, __CLASS__ . '@onPasswordRemindCreated'
         );
+
     }
 
     /**
@@ -39,9 +43,9 @@ class UsersEventListener
         return $event->user->save();
     }
 
-    public function onUserCreated(\App\Events\UserCreated $evcent)
+    public function onUserCreated(\App\Events\UserCreated $event)
     {
-        $user = $evcent->user;
+        $user = $event->user;
 
         \Mail::send('emails.auth.confirm', compact('user'),
             function ($message) use ($user) {
@@ -52,7 +56,7 @@ class UsersEventListener
             });
     }
 
-    public function onPasswordRemindCreated(\App\Events\PasswordRemindCreated $event)
+    public function onPasswordRemindCreated($event)
     {
         \Mail::send('emails.passwords.reset',
             ['token' => $event->token],

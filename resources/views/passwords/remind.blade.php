@@ -20,6 +20,4 @@
             </button>
         </div>
     </form>
-
-    ㄹㅇㄴㄹㄹ
 @stop
