@@ -23,6 +23,7 @@
 
     @include('layouts.partial.footer')
 
+    <script src="https://kit.fontawesome.com/8f663341dd.js" crossorigin="anonymous"></script>
     <script src="/bootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
 
