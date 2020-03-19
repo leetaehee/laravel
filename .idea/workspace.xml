@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="516aecd1-6b49-4d3e-84ea-d6516bde8e4c" name="Default Changelist" comment="이벤트 subscribe 오타 수정">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="516aecd1-6b49-4d3e-84ea-d6516bde8e4c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Listeners/UsersEventListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/UsersEventListener.php" afterDir="false" />
     </list>
@@ -223,7 +222,7 @@
       <workItem from="1584245602952" duration="4038000" />
       <workItem from="1584256101839" duration="6623000" />
       <workItem from="1584265599491" duration="6829000" />
-      <workItem from="1584579700887" duration="1917000" />
+      <workItem from="1584579700887" duration="1987000" />
     </task>
     <task id="LOCAL-00001" summary="입력값 유효성 검사1">
       <created>1582117661751</created>
@@ -365,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584582450704</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="php스톰에서 생성되는 파일 commit 금지 (.gitignore 수정)">
+      <created>1584582601911</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1584582601911</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -436,7 +442,8 @@
     <MESSAGE value="사용자 인증 재구성 초기작업" />
     <MESSAGE value="사용자 인증 라우터 구성" />
     <MESSAGE value="이벤트 subscribe 오타 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="이벤트 subscribe 오타 수정" />
+    <MESSAGE value="php스톰에서 생성되는 파일 commit 금지 (.gitignore 수정)" />
+    <option name="LAST_COMMIT_MESSAGE" value="php스톰에서 생성되는 파일 commit 금지 (.gitignore 수정)" />
   </component>
   <component name="masterDetails">
     <states>
