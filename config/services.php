@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'github' => [
+        'client_id' => env('GITHUB_ID'),
+        'client_secret' => ('GITHUB_SECRET'),
+        'redirect' => ('GITHUB_CALLBACK'),
+    ],
+
 ];
