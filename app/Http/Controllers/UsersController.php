@@ -26,31 +26,16 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        //$socialUser = \App\User::whereEmail($request->input('email'))
+        //    ->whereNull('password')->first();
 
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'min:6|same:password',
-        ]);
+        $socialUser = \App\User::socialUser($request->input('email'))->first();
 
-        $confirmCode = Str::random(60);
+        if ($socialUser) {
+            return $this->updateSocialAccount($request, $socialUser);
+        }
 
-        $user = \App\User::create([
-           'name' => $request->input('name'),
-           'email' => $request->input('email'),
-           'password' => bcrypt($request->input('password')),
-           'confirm_code' => $confirmCode
-        ]);
-
-        // 메일발송
-        event(new \App\Events\UserCreated($user));
-
-        //flash('가입하시 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인 해 주세요.');
-        //return redirect('/');
-
-        return $this->respondCreated(
-            '가입하시 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인 해 주세요.');
+        return $this->createNativeAccount($request);
     }
 
     public function confirm($code)
@@ -73,5 +58,51 @@ class UsersController extends Controller
         //return redirect('/');
 
         return $this->respondCreated(auth()->user()->name . '님, 환영합니다. 가입 확인되었습니다.');
+    }
+
+    public function updateSocialAccount(Request $request, \App\User $user)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'password' => 'required|confirmed|min:6'
+        ]);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        auth()->login($user);
+
+        return $this->respondCreated($user->name . '님 환영합니다.');
+    }
+
+    public function createNativeAccount(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'min:6|same:password',
+        ]);
+
+        $confirmCode = Str::random(60);
+
+        $user = \App\User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'confirm_code' => $confirmCode
+        ]);
+
+        // 메일발송
+        event(new \App\Events\UserCreated($user));
+
+        //flash('가입하시 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인 해 주세요.');
+        //return redirect('/');
+
+        return $this->respondCreated(
+            '가입하시 메일 계정으로 가입 확인 메일을 보내드렸습니다. 가입 확인하시고 로그인 해 주세요.');
     }
 }

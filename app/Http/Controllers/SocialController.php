@@ -30,6 +30,18 @@ class SocialController extends Controller
     {
         $user = \Socialite::driver($provider)->stateless()->user();
 
-        dd($user);
+        // 깃에서
+        $user = (\App\User::whereEmail($user->getEmail())->first())
+            ?: \App\User::create([
+               'name' => $user->getName() ?: 'unknown',
+               'email'=> $user->getEmail() ?: 'lastride25@naver.com',
+               'activated' => 1,
+            ]);
+
+        auth()->login($user);
+
+        flash(auth()->user()->name . '님, 환영합니다.');
+
+        return redirect('/');
     }
 }
