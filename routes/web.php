@@ -1,5 +1,8 @@
 <?php
 
+/* article */
+Route::resource('articles', 'ArticlesController');
+
 /* 메인 */
 Route::get('/', [
     'as' => 'home',

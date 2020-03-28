@@ -1,26 +1,27 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
-	<div>
-		<h1>포럼글 목록</h1>
-		<hr/>
-		<ul>
-			@forelse($articles as $article)
-				<li>
-					{{ $article->title }}
-					<small>
-						by {{ $article->user->name }}
-					</small>
-				</li>
-			@empty
-				<p>글이 없습니다.</p>
-			@endforelse
-		</ul>
+	<div class="page-header">
+		<h4>포럼<small> / 글목록</small></h4>
 	</div>
 
+	<div class="text-right">
+		<a href="{{ route('articles.create') }}" class="btn btn-primary">
+			<li class="fa fa-plus-circle"></li> 새 글 쓰기
+		</a>
+	</div>
+
+	<article>
+		@forelse($articles as $article)
+			@include('articles.partial.article', compact('article'))
+		@empty
+			<p class="text-center text-danger">글이 없습니다.</p>
+		@endforelse
+	</article>
+
 	@if($articles->count())
-		<div>
-			{!! $articles->render() !!}
+		<div class="text-center">
+			{!! $articles->appends(Request::except('page'))->render() !!}
 		</div>
 	@endif
 @stop
