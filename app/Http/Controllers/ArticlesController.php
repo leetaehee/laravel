@@ -53,6 +53,8 @@ class ArticlesController extends Controller
                 ->withInput();
         }
 
+        $article->tags()->sync($request->input('tags'));
+
         event(new \App\Events\ArticlesEvent($article));
 
         return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
@@ -96,6 +98,7 @@ class ArticlesController extends Controller
     public function update(\App\Http\Requests\ArticlesRequest $request, \App\Article $article)
     {
         $article->update($request->all());
+        $article->tags()->sync($request->input('tags'));
 
         flash()->success('수정 하신 내용을 저장 했습니다.');
 
