@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $viewName = 'articles.show';
+    @endphp
     <div class="page-header">
         <h4>포럼<small> / {{ $article->title }}</small></h4>
     </div>

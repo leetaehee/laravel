@@ -16,10 +16,17 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($slug = null)
     {
-        $articles = \App\Article::with('user')->latest()->paginate(3);
+        //$articles = \App\Article::with('user')->latest()->paginate(3);
 		//dd(view('articles.index', compact('articles'))->render());
+        //return view('articles.index', compact('articles'));
+
+        $query = $slug ? \App\Tag::whereSlug($slug)->firstOrFail()->articles()
+            : new \App\Article;
+
+        $articles = $query->latest()->paginate(3);
+
         return view('articles.index', compact('articles'));
     }
 
