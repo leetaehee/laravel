@@ -28,6 +28,22 @@
         </div>
 
         <div class="form-group">
+            <label for="tags">태그</label>
+            <select id="tags"
+                    name="tags[]"
+                    class="form-control"
+                    multiple>
+                @foreach ($allTags as $tag)
+                    <option value="{{ $tag->id }}"
+                            {{ $article->tags->contains($tag->id) ? 'selected="selected"' : '' }}>
+                        {{ $tag->name }}
+                    </option>
+                @endforeach
+            </select>
+            {!! $errors->first('tags', '<span class="form-error">:message</span>') !!}
+        </div>
+
+        <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="등록하기">
         </div>
     </form>
