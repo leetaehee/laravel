@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         //
 
         view()->composer('*', function ($view) {
-           $allTags = \Cache::rememberForever('tags.list', function() {
+           $allTags = \Cache::rememberForever('tags.partial.list', function() {
               return \App\Tag::all();
            });
 
