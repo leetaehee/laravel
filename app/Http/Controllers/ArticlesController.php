@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticlesController extends Controller
 {
@@ -61,6 +62,23 @@ class ArticlesController extends Controller
         }
 
         $article->tags()->sync($request->input('tags'));
+
+        if ($request->hasFile('files')) {
+            $files = $request->file('files');
+
+            foreach ($files as $file) {
+                $filename = Str::random() . filter_var($file->getClientOriginalName(), FILTER_SANITIZE_URL);
+
+                $article->attachments()->create([
+                    'filename' => $filename,
+                    'bytes' => $file->getSize(),
+                    'mome' => $file->getClientMimeType()
+                ]);
+
+                $file->move(attachments_path(), $filename);
+
+            }
+        }
 
         event(new \App\Events\ArticlesEvent($article));
 

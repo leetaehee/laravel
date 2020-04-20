@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ArticlesRequest extends FormRequest
 {
+    protected $dontFlash = ['file'];
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -27,6 +29,8 @@ class ArticlesRequest extends FormRequest
             'title' => ['required'],
             'content' => ['required', 'min:10'],
             'tags' => ['required', 'array'],  // tags => 'required|array'와 같음
+            'files' => ['array'],
+            'files.*' => ['mimes:jpg,png,zip,tar,txt', 'max:30000']
         ];
     }
 

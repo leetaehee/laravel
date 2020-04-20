@@ -5,7 +5,7 @@
         <h4>포럼 <small> / 글 등록</small></h4>
     </div>
 
-    <form action="{{ route('articles.store') }}" method="POST">
+    <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data">
         {!! csrf_field() !!}
 
         <div class="form-group">
@@ -41,6 +41,16 @@
                 @endforeach
             </select>
             {!! $errors->first('tags', '<span class="form-error">:message</span>') !!}
+        </div>
+
+        <div class="form-group">
+            <label for="file">파일</label>
+            <input type="file"
+                   name="files[]"
+                   id="files"
+                   class="form-control"
+                   multiple>
+            {!! $errors->first('files.0', '<span class="form-error">:message</span>') !!}
         </div>
 
         <div class="form-group">
