@@ -55,6 +55,27 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Seeded: article_tag table');
 
+        // 최상위 댓글
+        $articles->each(function ($article) {
+            $article->comments()->save(factory(App\Comment::class)->make());
+            $article->comments()->save(factory(App\Comment::class)->make());
+        });
+
+        // 자식댓글
+        $articles->each(function ($article) use ($faker){
+            $commentIds = App\Comment::pluck('id')->toArray();
+
+            foreach (range(1, 5) as $index) {
+                $article->comments()->save(
+                    factory(App\Comment::class)->make([
+                        'parent_id' => $faker->randomElements($commentIds),
+                    ])
+                );
+            }
+        });
+
+        $this->command->info('Seeded: comments table');
+
 		if (config('database.default') !== 'sqlite') {
 			DB::statement('SET FOREIGN_KEY_CHECKS=1');
 		}

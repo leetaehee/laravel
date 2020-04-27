@@ -73,3 +73,7 @@ Route::get('tag/{slug}/articles', [
     'as' => 'tags.articles.index',
     'uses' => 'ArticlesController@index'
 ]);
+
+/* comment */
+Route::resource('comments', 'CommentsController', ['only' => ['update', 'destroy']]);
+Route::resource('articles.comments', 'CommentsController', ['only' => 'store']);

@@ -97,6 +97,8 @@ class ArticlesController extends Controller
         //dd($article);
         //return $article->toArray();
 
+        $comments = $article->comments()->with('replies')->latest()->get();
+
         return view('articles.show', compact('article'));
     }
 
