@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['commentable_type', 'commentable_id', 'user_id', 'parent_id', 'content'];
+    protected $fillable = ['commentable_id', 'user_id', 'parent_id', 'content'];
 
-    protected $with = ['user',];
+    protected $with = ['user', 'votes'];
+
+    protected $appends = ['up_count', 'down_count'];
 
     public function user()
     {
@@ -28,5 +30,20 @@ class Comment extends Model
     public function parent()
     {
         return $this->belongsTo(Comment::class. 'parent_id', 'id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    public function getUpCountAttribute()
+    {
+        return (int) $this->votes()->sum('up');
+    }
+
+    public function getDownCountAttribute()
+    {
+        return (int) $this->votes()->sum('down');
     }
 }

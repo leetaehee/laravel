@@ -27,6 +27,6 @@ class Article extends Model
 
     public function comments()
     {
-        return $this->morphTo(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

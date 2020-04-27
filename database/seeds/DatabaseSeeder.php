@@ -57,8 +57,8 @@ class DatabaseSeeder extends Seeder
 
         // 최상위 댓글
         $articles->each(function ($article) {
-            $article->comments()->save(factory(App\Comment::class)->make());
-            $article->comments()->save(factory(App\Comment::class)->make());
+           // $article->comments()->save(factory(App\Comment::class)->make());
+           // $article->comments()->save(factory(App\Comment::class)->make());
         });
 
         // 자식댓글

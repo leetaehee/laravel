@@ -1,4 +1,3 @@
-{{--
 <div class="media item__comment {{ $isReply ? 'sub' : 'top' }}"
      data-id="{{ $comment->id }}"
      id="comment_{{ $comment->id }}">
@@ -22,7 +21,7 @@
         <div class="action__comment">
             @can('update', $comment)
                 <button class="btn__delete__comment">댓글 삭제</button>
-                <button class="btn_edit__comment">댓글 수정</button>
+                <button class="btn__edit__comment">댓글 수정</button>
             @endcan
 
             @if ($currentUser)
@@ -38,7 +37,7 @@
             @include('comments.partial.edit')
         @endcan
 
-        @forelse ($comment->repiles as $reply)
+        @forelse ($comment->replies as $reply)
             @include('comments.partial.comment', [
                 'comment' => $reply,
                 'isReply' => true
@@ -47,4 +46,3 @@
         @endforelse
     </div>
 </div>
---}}

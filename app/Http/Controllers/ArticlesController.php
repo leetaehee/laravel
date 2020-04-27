@@ -99,7 +99,7 @@ class ArticlesController extends Controller
 
         $comments = $article->comments()->with('replies')->latest()->get();
 
-        return view('articles.show', compact('article'));
+        return view('articles.show', compact('article', $comments));
     }
 
     /**

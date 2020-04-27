@@ -1,12 +1,11 @@
-<!--
 <div class="media media__create__comment {{ isset($parentId) ? 'sub' : 'top' }}">
-    @include('user.partial.avatar', ['user' => $currentUser, 'size' => 32])
+    @include('users.partial.avatar', ['users' => $currentUser, 'size' => 32])
 
     <div class="media-body">
         <form method="POST"
               action="{{ route('articles.comments.store', $article->id) }}"
               class="form-horizontal">
-            {!! ! csrf_field() !!}
+            {!! csrf_field() !!}
 
             @if (isset($parentId))
                 <input type="hidden" name="parent_id" value="{{ $parentId }}">
@@ -24,4 +23,3 @@
         </form>
     </div>
 </div>
--->
