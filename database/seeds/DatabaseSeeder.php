@@ -29,6 +29,12 @@ class DatabaseSeeder extends Seeder
 		DB::table('article_tag')->truncate();
 		$tags = config('project.tags');
 
+		/* 댓글 */
+        App\Comment::truncate();
+
+        /* 투표 */
+        App\Vote::truncate();
+
 		foreach ($tags as $slug => $name) {
 		    App\Tag::create([
 		       'name' => $name,
