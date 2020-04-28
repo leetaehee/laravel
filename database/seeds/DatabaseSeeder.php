@@ -57,24 +57,41 @@ class DatabaseSeeder extends Seeder
 
         // 최상위 댓글
         $articles->each(function ($article) {
-           // $article->comments()->save(factory(App\Comment::class)->make());
-           // $article->comments()->save(factory(App\Comment::class)->make());
+            $article->comments()->save(factory(App\Comment::class)->make());
+            $article->comments()->save(factory(App\Comment::class)->make());
         });
 
         // 자식댓글
         $articles->each(function ($article) use ($faker){
             $commentIds = App\Comment::pluck('id')->toArray();
 
-            foreach (range(1, 5) as $index) {
-                $article->comments()->save(
-                    factory(App\Comment::class)->make([
-                        'parent_id' => $faker->randomElements($commentIds),
-                    ])
-                );
+            $count = collect($commentIds)->count();
+            if ($count > 0) {
+                foreach (range(1, 5) as $index) {
+
+                    $parentData = $faker->randomElements($commentIds);
+
+                    $article->comments()->save(
+                        factory(App\Comment::class)->make([
+                            'parent_id' => $parentData[0],
+                        ])
+                    );
+                }
             }
         });
 
         $this->command->info('Seeded: comments table');
+
+        // 투표하기
+        $comments = App\Comment::all();
+
+        $comments->each(function ($comment) {
+            $comment->votes()->save(factory(App\Vote::class)->make());
+            $comment->votes()->save(factory(App\Vote::class)->make());
+            $comment->votes()->save(factory(App\Vote::class)->make());
+        });
+
+        $this->command->info('Seeded : votes table');
 
 		if (config('database.default') !== 'sqlite') {
 			DB::statement('SET FOREIGN_KEY_CHECKS=1');
