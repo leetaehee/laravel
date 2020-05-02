@@ -41,7 +41,10 @@ class ArticlesController extends Controller
         //$articles = $query->latest()->paginate(3);
         //$articles = $query->paginate(3);
 
-        $articles = $this->cache($cacheKey, 10, $query, 'paginate', 5);
+        // 캐시 시간 지정(5분)
+        $minutes = 1000 * 60 * 5;
+
+        $articles = $this->cache($cacheKey, $minutes, $query, 'paginate', 5);
 
         return view('articles.index', compact('articles'));
     }
@@ -100,6 +103,8 @@ class ArticlesController extends Controller
         }
 
         event(new \App\Events\ArticlesEvent($article));
+
+        event(new \App\Events\ModelChanged(['articles']));
 
         return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
     }
