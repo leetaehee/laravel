@@ -42,7 +42,6 @@ class Test extends Command
         );
 
         $this->info('크론탭이 돌았습니다...');
-        $this->info('크론탭이 돌았습니다...');
 
         return;
     }
