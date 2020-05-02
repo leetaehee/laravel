@@ -54,6 +54,18 @@
         </div>
 
         <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           name="notification"
+                           value="{{ old('notification', 1) }}"
+                           checked>
+                    댓글이 작성되면 이메일 알람 받기
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" value="등록하기">
         </div>
     </form>

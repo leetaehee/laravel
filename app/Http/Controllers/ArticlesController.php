@@ -17,7 +17,7 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug = null)
+    public function index(Request $request, $slug = null)
     {
         //$articles = \App\Article::with('user')->latest()->paginate(3);
 		//dd(view('articles.index', compact('articles'))->render());
@@ -26,7 +26,18 @@ class ArticlesController extends Controller
         $query = $slug ? \App\Tag::whereSlug($slug)->firstOrFail()->articles()
             : new \App\Article;
 
-        $articles = $query->latest()->paginate(3);
+        $query = $query->orderBy(
+            $request->input('sort', 'created_at'),
+            $request->input('order', 'desc')
+        );
+
+        if ($keyword = request()->input('q')) {
+            $raw = 'MATCH(title, content) AGAINST(? IN BOOLEAN MODE)';
+            $query = $query->whereRaw($raw, [$keyword]);
+        }
+
+        //$articles = $query->latest()->paginate(3);
+        $articles = $query->paginate(3);
 
         return view('articles.index', compact('articles'));
     }
@@ -53,8 +64,12 @@ class ArticlesController extends Controller
      */
     public function store(\App\Http\Requests\ArticlesRequest $request)
     {
+        $payload = array_merge($request->all(), [
+            'notification' => $request->has('notification'),
+        ]);
+
         //$article = \App\User::find(1)->articles()->create($request->all());
-        $article = $request->user()->articles()->create($request->all());
+        $article = $request->user()->articles()->create($payload);
 
         if (! $article) {
             return back()->with('flash_message', '글이 저장되지 않았습니다.')
@@ -96,6 +111,9 @@ class ArticlesController extends Controller
         //$article = \App\Article::findOrFail($id);
         //dd($article);
         //return $article->toArray();
+
+        $article->view_count += 1;
+        $article->save();
 
         $comments = $article->comments()->with('replies')->latest()->get();
 

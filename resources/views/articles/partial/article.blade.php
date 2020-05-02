@@ -12,6 +12,14 @@
         <p class="text-muted meta__article">
             <i class="fa fa-user"></i> {{ $article->user->name }}
             <i class="fa fa-clock-o"></i> {{ $article->created_at->diffForHumans() }}
+            <span>
+            / {{ $article->created_at->diffForHumans() }} 에 작성
+            ⦁ 조회수 {{ $article->view_count }}
+
+            @if ($article->comment_count > 0)
+                ⦁ 댓글 {{ $article->comment_count }}
+            @endif
+        </span>
         </p>
 
         @if ($viewName === 'articles.index')

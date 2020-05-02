@@ -18,6 +18,18 @@
 </div>
 
 <div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox"
+                   name="notification"
+                   value="{{ old('notification', 1) }}"
+                   checked>
+            댓글이 작성되면 이메일 알람 받기
+        </label>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="tags">태그</label>
     <select id="tags"
             name="tags[]"
