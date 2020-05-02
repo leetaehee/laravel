@@ -56,12 +56,25 @@
             @include('comments.partial.edit')
         @endcan
 
-        @forelse ($comment->replies as $reply)
-            @include('comments.partial.comment', [
-                'comment' => $reply,
-                'isReply' => true
-            ])
-        @empty
-        @endforelse
+        @if ($isTrashed and ! $hasChild)
+            <!-- // 1. 삭제된 댓글이면서 자식 댓글도 없다. 이 때는 아무것도 출력할 필요가 없다. -->
+        @elseif ($isTrashed and $hasChild)
+            <!-- // 2. 삭제된 댓글이지만 자식 댓글이 있다. "삭제되었습니다." 라고 알리고 자식댓글은 계속 출력한다.-->
+            <div class="text-danger content__comment">
+                삭제된 댓글입니다.
+            </div>
+
+            @forelse ($comment->replies as $reply)
+                @include('comments.partial.comment', [
+                    'comment' => $reply,
+                    'isReply' => true,
+                    'hasChild' => $reply->replies->count(),
+                    'isTrashed' => $reply->trashed(),
+                ])
+            @empty
+            @endforelse
+        @else
+            <!-- 3. 살아 있는 댓글이다. 자신을 출력하고, 자식댓글도 계속 출력한다. -->
+        @endif
     </div>
 </div>

@@ -19,7 +19,9 @@
     @forelse($comments as $comment)
         @include('comments.partial.comment', [
             'parentId' => $comment->id,
-            'isReply' => false
+            'isReply' => false,
+            'hasChild' => $comment->replies->count(),
+            'isTrashed' => $comment->trashed()
         ])
     @empty
     @endforelse

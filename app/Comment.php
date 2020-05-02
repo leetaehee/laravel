@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use \Illuminate\Database\Eloquent\SoftDeletes;
+
     protected $fillable = ['commentable_id', 'user_id', 'parent_id', 'content'];
 
     protected $with = ['user', 'votes'];
 
     protected $appends = ['up_count', 'down_count'];
+
+    protected $dates = ['deleted_at'];
 
     public function user()
     {
@@ -46,4 +50,6 @@ class Comment extends Model
     {
         return (int) $this->votes()->sum('down');
     }
+
+
 }

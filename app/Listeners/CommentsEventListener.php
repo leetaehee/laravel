@@ -48,6 +48,7 @@ class CommentsEventListener
         static $to = [];
 
         if ($comment->parent_id) {
+
             $to[] = $comment->parent_id->user->email;
 
             $this->recipients($comment->parent_id);
