@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ArticlesController extends Controller
+class ArticlesController extends Controller implements Cacheable
 {
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    public function cacheTags()
+    {
+        return 'articles';
     }
 
     /**

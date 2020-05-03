@@ -69,3 +69,8 @@ function cache_key($base)
 
     return md5($key);
 }
+
+function taggable()
+{
+    return in_Array(config('cache.default'), ['memcached', 'redis'], true);
+}

@@ -11,6 +11,17 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $cache;
+
+    public function __construct()
+    {
+        $this->cache = app('cache');
+
+        if ((new \ReflectionClass($this))->implementsInterface(Cacheable::class) and taggable()) {
+            $this->cache = app('cache')->tags($this->cacheTags());
+        }
+    }
+
     protected function cache($key, $minutes, $query, $method, ...$args)
     {
         $args = (! empty($args)) ? implode(',', $args) : null;
@@ -19,7 +30,24 @@ class Controller extends BaseController
             return $query->{$method}($args);
         }
 
+        // file cache
+        /*
         return \Cache::remember($key, $minutes, function () use($query, $method, $args) {
+            return  $query->{$method}($args);
+        });
+        */
+
+        // memcached
+        /*
+        $cache = taggable() ? app('cache')->tags('???') : app('cache');
+
+        return $cache->remember($key, $minutes, function () use($query, $method, $args) {
+            return  $query->{$method}($args);
+        });
+        */
+
+        // 캐시태그
+        return $this->cache->remember($key, $minutes, function () use($query, $method, $args) {
             return  $query->{$method}($args);
         });
     }
