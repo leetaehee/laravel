@@ -19,4 +19,9 @@ return [
     ],
 
     'cache' => true,
+
+    'locales' => [
+        'ko' => '한국어',
+        'en' => 'English',
+    ]
 ];

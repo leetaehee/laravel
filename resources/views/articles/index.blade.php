@@ -5,7 +5,11 @@
 		$viewName = 'articles.index';
 	@endphp
 	<div class="page-header">
-		<h4>포럼<small> / 글목록</small></h4>
+		<!--<h4>포럼<small> / 글목록</small></h4>-->
+		<a href="{{ route('articles.index') }}">
+			{{ trans('forum.title') }}
+			<small> / {{ trans('forum.articles.index') }}</small>
+		</a>
 	</div>
 
 	<div class="text-right">

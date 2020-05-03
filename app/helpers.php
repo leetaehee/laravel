@@ -74,3 +74,16 @@ function taggable()
 {
     return in_Array(config('cache.default'), ['memcached', 'redis'], true);
 }
+
+function currentUrl()
+{
+    if (! request()->has('return')) {
+        return request()->fullUrl();
+    }
+
+    return sprintf(
+        '%s?%s',
+        request()->url(),
+        http_build_query(request()->except('return'))
+    );
+}

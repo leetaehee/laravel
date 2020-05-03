@@ -83,3 +83,9 @@ Route::post('comments/{comment}/votes', [
     'as' => 'comments.vote',
     'uses' => 'CommentsController@vote'
 ]);
+
+/* 다국어 */
+Route::get('locale', [
+    'as' => 'locale',
+    'uses' => 'WelcomeController@Locale'
+]);
