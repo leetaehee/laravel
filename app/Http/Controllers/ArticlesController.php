@@ -42,7 +42,8 @@ class ArticlesController extends Controller
         //$articles = $query->paginate(3);
 
         // 캐시 시간 지정(5분)
-        $minutes = 1000 * 60 * 5;
+        //$minutes = 1000 * 60 * 5;
+        $minutes = 60 * 5;
 
         $articles = $this->cache($cacheKey, $minutes, $query, 'paginate', 5);
 
