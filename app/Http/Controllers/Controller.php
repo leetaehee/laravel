@@ -31,11 +31,9 @@ class Controller extends BaseController
         }
 
         // file cache
-        /*
         return \Cache::remember($key, $minutes, function () use($query, $method, $args) {
             return  $query->{$method}($args);
         });
-        */
 
         // memcached
         /*
@@ -47,8 +45,10 @@ class Controller extends BaseController
         */
 
         // 캐시태그
+        /*
         return $this->cache->remember($key, $minutes, function () use($query, $method, $args) {
             return  $query->{$method}($args);
         });
+        */
     }
 }
