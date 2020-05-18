@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
            //$currentUrl = request()->fullUrl();
            $currentUrl = currentUrl();
 
-            $view->with(compact('allTags', 'currentLocale', 'currentUrl'));
+           $view->with(compact('allTags', 'currentLocale', 'currentUrl'));
         });
     }
 }
