@@ -24,16 +24,10 @@ Route::group(['domain' => config('project.api_domain'), 'namespace' => 'Api', 'a
        // 리스스 관련 라우트
 
         /** 환영 메세지 */
-        /*
         Route::get('/', [
            'as' => 'index',
            'uses' => 'WelcomeController@index',
         ]);
-        */
-
-        Route::get('/', function() {
-           echo "안녕! 말티즈";
-        });
 
         /** 포럼 API */
         Route::resource('articles', 'ArticlesController');
