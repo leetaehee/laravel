@@ -145,10 +145,10 @@ class ArticlesController extends Controller implements Cacheable
         //dd($article);
         //return $article->toArray();
 
-        if (! is_api_request()) {
+        //if (! is_api_request()) {
             $article->view_count += 1;
             $article->save();
-        }
+        //}
 
         $comments = $article->comments()->with('replies')
             ->withTrashed()->whereNull('parent_id')->latest()->get();
