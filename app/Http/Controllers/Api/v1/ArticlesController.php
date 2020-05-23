@@ -45,7 +45,14 @@ class ArticlesController extends ParentController
 
     protected function respondCollection(LengthAwarePaginator $articles)
     {
-        return $articles->toJson(JSON_PRETTY_PRINT);
+        //return $articles->toJson(JSON_PRETTY_PRINT);
+        return (new \App\Transformers\ArticleTransformerBasic)->withPagination($articles);
+    }
+
+    protected  function respondInstance(\App\Article $article, $comments)
+    {
+        // return $article->toJson(JSON_PRETTY_PRINT);
+        return (new \App\Transformers\ArticleTransformerBasic)->withItem($article);
     }
 
     public function tags()

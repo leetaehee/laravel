@@ -88,6 +88,7 @@ function currentUrl()
     );
 }
 
+/*
 function jwt()
 {
     return app('tymon.jwt.auth');
@@ -97,3 +98,4 @@ function is_api_domain()
 {
     return Str::startsWith(request()->getHttpHost(), config('project.api_domain'));
 }
+*/
