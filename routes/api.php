@@ -55,6 +55,5 @@ Route::group(['domain' => config('project.api_domain'), 'namespace' => 'Api', 'a
            'as' => 'comments.vote',
            'uses' => 'CommentController@vote'
         ]);
-
     });
 });

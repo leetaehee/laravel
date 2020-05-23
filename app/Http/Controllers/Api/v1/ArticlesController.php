@@ -20,6 +20,19 @@ class ArticlesController extends ParentController
         $this->middleware('auth.basic.once', ['except' => ['index', 'show', 'tags']]);
     }
 
+    protected function store(\App\Http\Requests\ArticlesRequest $request)
+    {
+        $payload = array_merge($request->all(), [
+            'notification' => $request->has('notification'),
+        ]);
+
+        //$article = \App\User::find(1)->articles()->create($payload);
+        $article = $request->user()->articles()->create($payload);
+
+        return $this->respondCreated($article);
+
+    }
+
     protected function respondCreated(\App\Article $article)
     {
         return response()->json(

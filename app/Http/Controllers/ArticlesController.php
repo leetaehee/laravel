@@ -85,9 +85,8 @@ class ArticlesController extends Controller implements Cacheable
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(\App\Http\Requests\ArticlesRequest $request)
+    protected function store(\App\Http\Requests\ArticlesRequest $request)
     {
-        /*
         $payload = array_merge($request->all(), [
             'notification' => $request->has('notification'),
         ]);
@@ -123,23 +122,13 @@ class ArticlesController extends Controller implements Cacheable
 
         event(new \App\Events\ModelChanged(['articles']));
 
-        return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
-
-        */
-
-        $payload = array_merge($request->all(), [
-            'notification' => $request->has('notification'),
-        ]);
-
-        $article = \App\User::find(1)->articles()->create($payload);
-
+        //return redirect(route('articles.index'))->with('flash_message', '작성하신 글이 저장되었습니다.');
         return $this->respondCreated($article);
-
     }
 
     protected function respondCreated(\App\Article $article)
     {
-        flash()->success('api test success.');
+        flash()->success('작성하신 글이 저장되었습니다.');
 
         return redirect(route('articles.show', $article->id));
     }

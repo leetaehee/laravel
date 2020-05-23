@@ -16,7 +16,7 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
-    public function store(Request $request)
+    protected function store(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email',
