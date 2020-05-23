@@ -26,4 +26,6 @@ return [
     ],
 
     'api_domain' => env('API_DOMAIN', 'api.laravel.study'),
+
+    'etag' => true,
 ];

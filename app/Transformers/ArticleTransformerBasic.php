@@ -8,10 +8,7 @@
 
 namespace App\Transformers;
 
-
-use App\Http\Controllers\Api\v1\ArticlesController;
 use Illuminate\Pagination\LengthAwarePaginator;
-use phpDocumentor\Reflection\DocBlock\Tag;
 
 class ArticleTransformerBasic
 {

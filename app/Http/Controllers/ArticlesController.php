@@ -55,12 +55,12 @@ class ArticlesController extends Controller implements Cacheable
 
         //return view('articles.index', compact('articles'));
 
-        return $this->respondCollection($articles);
+        return $this->respondCollection($articles, $cacheKey);
     }
 
 
     protected function respondCollection(\Illuminate\Contracts\Pagination\
-                                         LengthAwarePaginator $articles)
+                                         LengthAwarePaginator $articles, $cacheKey)
     {
         return view('articles.index', compact('articles'));
     }
@@ -145,8 +145,10 @@ class ArticlesController extends Controller implements Cacheable
         //dd($article);
         //return $article->toArray();
 
-        $article->view_count += 1;
-        $article->save();
+        if (! is_api_request()) {
+            $article->view_count += 1;
+            $article->save();
+        }
 
         $comments = $article->comments()->with('replies')
             ->withTrashed()->whereNull('parent_id')->latest()->get();

@@ -9,10 +9,13 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\ArticlesController as ParentController;
+use App\Http\Controllers\Cacheable;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ArticlesController extends ParentController
+class ArticlesController extends ParentController implements Cacheable
 {
+    use \App\EtagTrait;
+
     public function __construct()
     {
         parent::__construct();
@@ -43,7 +46,7 @@ class ArticlesController extends ParentController
         );
     }
 
-    protected function respondCollection(LengthAwarePaginator $articles)
+    protected function respondCollection(LengthAwarePaginator $articles, $cacheKey)
     {
         //return $articles->toJson(JSON_PRETTY_PRINT);
         return (new \App\Transformers\ArticleTransformerBasic)->withPagination($articles);
@@ -51,7 +54,6 @@ class ArticlesController extends ParentController
 
     protected  function respondInstance(\App\Article $article, $comments)
     {
-        // return $article->toJson(JSON_PRETTY_PRINT);
         return (new \App\Transformers\ArticleTransformerBasic)->withItem($article);
     }
 

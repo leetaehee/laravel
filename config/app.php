@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Appkr\Api\ApiServiceProvider::class,
+        //Appkr\Api\ApiServiceProvider::class,
 
         /*
          * Package Service Providers...
